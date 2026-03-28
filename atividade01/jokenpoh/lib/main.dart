@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jokenpoh/resultado.dart';
 
+import 'Escolha.dart';
+
 const String appName = 'Pedra, Papel, Tesoura';
 
 void main() {
@@ -32,7 +34,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+
+  void chamarTelaResultado(Escolha escolha) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Resultado(escolha),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,27 +84,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Resultado(),
-                      ),
-                    );
+                   chamarTelaResultado(pedra);
                   },
                   child: Container(
-                    child: Image.asset('assets/img/pedra.png'),
+                    child: Image.asset(pedra.caminho),
                   ),
                 ),
 
                 GestureDetector(
+                  onTap: () {
+                    chamarTelaResultado(papel);
+                  },
                   child: Container(
-                    child: Image.asset('assets/img/papel.png'),
+                    child: Image.asset(papel.caminho),
                   ),
                 ),
 
                 GestureDetector(
+                  onTap: () {
+                    chamarTelaResultado(tesoura);
+                  },
                   child: Container(
-                    child: Image.asset('assets/img/tesoura.png'),
+                    child: Image.asset(tesoura.caminho),
                   ),
                 )
 
